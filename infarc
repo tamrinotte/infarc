@@ -1,0 +1,90 @@
+#!/usr/bin/python3
+
+# LIBRARIES
+from sys import argv
+from os import path, makedirs
+from shutil import copytree, make_archive, ignore_patterns, rmtree, unpack_archive
+
+# VARIABLES
+helpOpts = ["-h", "--help"]
+compOpts = ["-c", "--compress"]
+extractOpts = ["-e", "--extract"]
+helpTxt = '\033[1m' + "NAME" + '\033[0m' + "\n\t" + 'infarc - Archive folders and files.\n\n' + '\033[1m' + 'USAGE' + '\033[0m'+ "\n\t" + 'infarc [OPTIONS] [SOURCEPATH] [DESTINATIONPATH]' + "\n\n" + '\033[1m' + 'DESCRIPTION' + '\033[0m' + "\n\t" + 'A command line tool to compress or extract files or folders.' + "\n\n" + '\033[1m' + 'OPTIONS' + '\033[0m' + "\n\t" + "-c, --compress\n\t\tUse this option to compress files\n\t" + "-e, --extract\n\t\tUse this option to extract files from a compressed folder\n\t" + "-t, --tar\n\t\tUse this option to set the comppress type to tar\n\t" + "-z, --zip\n\t\tUse this option to set the comppress type to zip\n\t" + "-n, --no-hidden\n\t\tIgnore all the hidden folders\n\n" + '\033[1m' + 'EXAMPLES' + '\033[0m' +"\n\t" + "infarc -c -t <source path> <destionation path>\n\t" + "infarc -c -z <source path> <destionation path>\n\t" + "infarc -c -z -n <source path> <destionation path>\n\t" + "infarc -c -t -n <source path> <destionation path>\n\t" + "infarc -e <source path> <destionation path>\n\n"
+tarOpts = ["-t", "--tar"]
+zipOpts = ["-z", "--zip"]
+nHOpts = ["-n", "--no-hidden"]
+cT = None
+nHC = None
+
+# FUNCTIONS
+def compress(sP, dP, cT, nHC):
+    """A function that compresses files"""
+
+    if path.exists(sP) == True:
+        if path.exists(dP) == False:
+            if nHC == True:
+                tDP = f'{dP}_tmp'
+                copytree(sP, tDP, ignore=ignore_patterns('.*'))
+                make_archive(dP, cT, tDP)
+                rmtree(tDP)
+                dS = f'Compressed folder is available in {dP}'
+
+            else:
+                make_archive(dP, cT, sP)
+                dS = f'Compressed folder is available in {dP}'
+
+        else:
+            print('Destination path is already exists.')
+
+    else:
+        print('Source path is not exists.')
+
+
+    return dS
+
+def extract(sP, dP):
+    """A function that extracts compressed files"""
+    if path.exists(sP) == True:
+        if path.exists(dP) == False:
+            makedirs(dP)
+            unpack_archive(sP, dP)
+            dS = f'Extracted files are available in {dP}'
+        else:
+            print('Destionation path is not exists.')
+    else:
+        print('Source path isn\'t exists. ')
+
+    return dS
+
+
+if argv[1].lower().strip() in helpOpts:
+    print(helpTxt)
+
+else:
+    if compOpts[0] in argv or compOpts[1] in argv:
+
+        if zipOpts[0] in argv or zipOpts[1] in argv:
+            cT = 'zip'
+        elif tarOpts[0] in argv or tarOpts[1] in argv:
+            cT = 'tar'
+        elif zipOpts[0] not in argv or zipOpts[1] not in argv or tarOpts[0] not in argv or tarOpts[1] not in argv:
+            cT = 'zip'
+        else:
+            print(f'You can\'t use both tar and zip options at the same time. Type infarc {helpOpts[0]}')
+
+
+        if nHOpts[0] in argv or nHOpts[1] in argv:
+            nHC = True
+        else:
+            nHC = False
+
+        dP = argv[len(argv)-1]
+        sP = argv[len(argv)-2]
+
+        compress(sP, dP, cT, nHC)
+
+    elif extractOpts[0] in argv or extractOpts[1] in argv:
+        dP = argv[len(argv)-1]
+        sP = argv[len(argv)-2]
+
+        extract(sP, dP)

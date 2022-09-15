@@ -28,10 +28,12 @@ def compress(sP, dP, cT, nHC):
                 make_archive(dP, cT, tDP)
                 rmtree(tDP)
                 dS = f'Compressed folder is available in {dP}'
+                return dS
 
             else:
                 make_archive(dP, cT, sP)
                 dS = f'Compressed folder is available in {dP}'
+                return dS
 
         else:
             print('Destination path is already exists.')
@@ -40,8 +42,6 @@ def compress(sP, dP, cT, nHC):
         print('Source path is not exists.')
 
 
-    return dS
-
 def extract(sP, dP):
     """A function that extracts compressed files"""
     if path.exists(sP) == True:
@@ -49,13 +49,12 @@ def extract(sP, dP):
             makedirs(dP)
             unpack_archive(sP, dP)
             dS = f'Extracted files are available in {dP}'
+            return dS
+
         else:
             print('Destionation path is not exists.')
     else:
         print('Source path isn\'t exists. ')
-
-    return dS
-
 
 if argv[1].lower().strip() in helpOpts:
     print(helpTxt)
@@ -71,7 +70,6 @@ else:
             cT = 'zip'
         else:
             print(f'You can\'t use both tar and zip options at the same time. Type infarc {helpOpts[0]}')
-
 
         if nHOpts[0] in argv or nHOpts[1] in argv:
             nHC = True

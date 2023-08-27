@@ -1,5 +1,5 @@
 # INFINITY ARCHIVE
-![InfinityArchiveLogo](https://cdn.pixabay.com/photo/2016/10/25/18/18/book-1769625_960_720.png)
+![InfinityArchiveLogo](https://raw.githubusercontent.com/tamrinotte/infarc/main/app_images/infinity_archive.png)
 
 Infinity Archive is a command line tool to archive files and folders by compressing them.
 
@@ -37,3 +37,35 @@ __-s, --skip-hidden:__ Ignore hidden files and folders
 
 <br>
 
+# INFINITY ARCHIVE
+![InfinityArchiveLogo](https://raw.githubusercontent.com/tamrinotte/infarc/main/app_images/infinity_archive.png)
+
+Infinity Archive dosyalarınızı ve/veya klasörlerinizi sıkıştırmanızı sağlayan bir komut satırı uygulamasıdır.
+
+<br>
+
+## YÜKLEME
+
+1) Yükleyiciyi indir
+
+       curl -L https://github.com/dogaegeozden/infarc/releases/download/compressing/infarc.deb -o infarc.deb
+
+2) Yükleyiciyi başlat
+
+       sudo dpkg -i infarc.deb
+
+<br>
+
+## ARGÜMANLAR 
+
+__-h, --help:__ Yardım mesajını görüntüle
+
+__-c, --compress:__ Sıkıştır
+
+__-e, --extract:__ Çıkar
+
+__-t, --tar:__  Sıkıştırma tipini tara ayarla
+
+__-z, --zip:__ Sıkıştırma tipini zipe ayarla
+		
+__-s, --skip-hidden:__ Gizli dosyaları ve klasörleri geç

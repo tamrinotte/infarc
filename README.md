@@ -9,7 +9,7 @@ Infinity Archive is a command line tool to archive files and folders by compress
 
 1) Download the installer
 
-       curl -L https://github.com/dogaegeozden/infarc/releases/download/compressing/infarc.deb -o infarc.deb
+       curl -L https://github.com/tamrinotte/infarc/releases/download/compressing/infarc.deb -o infarc.deb
 
 2) Start the installer
 
@@ -19,7 +19,7 @@ Infinity Archive is a command line tool to archive files and folders by compress
 
 ## OPTIONS 
 
-__-h, --help:__ Show this help message and exit
+__-h, --help:__ Show the help message and exit
 
 __-c, --compress:__ Compress
 
@@ -48,7 +48,7 @@ Infinity Archive dosyalarınızı ve/veya klasörlerinizi sıkıştırmanızı s
 
 1) Yükleyiciyi indir
 
-       curl -L https://github.com/dogaegeozden/infarc/releases/download/compressing/infarc.deb -o infarc.deb
+       curl -L https://github.com/tamrinotte/infarc/releases/download/compressing/infarc.deb -o infarc.deb
 
 2) Yükleyiciyi başlat
 

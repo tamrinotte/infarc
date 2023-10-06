@@ -90,7 +90,7 @@ def main():
 
     parser.add_argument("destination_path", help="Destination directory path")
 
-    # Parse arguments
+    # Parse the arguments
     args = parser.parse_args()
 
     # Check if user is trying to use the compress feature
